@@ -8,7 +8,7 @@ namespace ConsoleAppNETCore5_MongoDB
         {
             MongoCRUD db = new MongoCRUD("AddressBook");
 
-            // Adding Record to Table
+            /// Adding Record to Table
             //var person = new PersonModel()
             //{
             //    FirstName = "Mehmet",
@@ -20,11 +20,10 @@ namespace ConsoleAppNETCore5_MongoDB
             //        Country = "Turkey"
             //    }
             //};
-
             //db.InsertRecord<PersonModel>("Users", person);
             //Console.ReadLine();
 
-            // Getting all records
+            /// Getting all records
             //var returnedRecords = db.LoadRecords<PersonModel>("Users");
             //foreach (var item in returnedRecords)
             //{
@@ -36,9 +35,9 @@ namespace ConsoleAppNETCore5_MongoDB
             //    Console.WriteLine();
             //}
 
-            // Getting one record
-            var oneRecord = db.LoadOneRecord<PersonModel>("Users", new Guid("9bf87b0c-35ed-48f7-98a4-cb5a219a4e31"));
-            Console.WriteLine(oneRecord.ToString());
+            /// Getting one record
+            //var oneRecord = db.LoadOneRecord<PersonModel>("Users", new Guid("9bf87b0c-35ed-48f7-98a4-cb5a219a4e31"));
+            //Console.WriteLine(oneRecord.ToString());
         }
     }
 }
