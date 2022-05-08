@@ -47,7 +47,7 @@ namespace ConsoleAppNETCore5_MongoDB
         /// <param name="table"></param>
         /// <param name="id"></param>
         /// <returns>T</returns>
-        public T LoadOneRecord<T>(string table, Guid id)
+        public T LoadRecordById<T>(string table, Guid id)
         {
             var collection = db.GetCollection<T>(table);
             var filter = Builders<T>.Filter.Eq("Id", id);
@@ -55,6 +55,32 @@ namespace ConsoleAppNETCore5_MongoDB
             return collection.Find(filter).First();
         }
 
-        // UPsert - Update or insert comes next
+        /// <summary>
+        /// Upsert: Update or Insert
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="table"></param>
+        /// <param name="id"></param>
+        /// <param name="record"></param>
+        public void UpsertRecord<T>(string table, Guid id, T record)
+        {
+            var collection = db.GetCollection<T>(table);
+            var result = collection.ReplaceOne(new BsonDocument("_id", id),
+                record,
+                new UpdateOptions { IsUpsert = true });
+        }
+
+        /// <summary>
+        /// Delete One Record
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="table"></param>
+        /// <param name="id"></param>
+        public void DeleteRecord<T>(string table, Guid id)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filter = Builders<T>.Filter.Eq("Id", id);
+            collection.DeleteOne(filter);
+        }
     }
 }

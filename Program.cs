@@ -2,7 +2,7 @@
 
 namespace ConsoleAppNETCore5_MongoDB
 {
-    internal class Program
+    internal partial class Program
     {
         static void Main(string[] args)
         {
@@ -11,7 +11,7 @@ namespace ConsoleAppNETCore5_MongoDB
             /// Adding Record to Table
             //var person = new PersonModel()
             //{
-            //    FirstName = "Mehmet",
+            //    FirstName = "Alp",
             //    LastName = "Çorumlu",
             //    PrimaryAddress = new AddressModel()
             //    {
@@ -20,24 +20,46 @@ namespace ConsoleAppNETCore5_MongoDB
             //        Country = "Turkey"
             //    }
             //};
-            //db.InsertRecord<PersonModel>("Users", person);
+            //db.InsertRecord<PersonModel>("People", person);
             //Console.ReadLine();
 
+
             /// Getting all records
-            //var returnedRecords = db.LoadRecords<PersonModel>("Users");
+            //var returnedRecords = db.LoadRecords<PersonModel>("People");
             //foreach (var item in returnedRecords)
             //{
             //    Console.WriteLine($"{item.Id}: {item.FirstName} {item.LastName}");
-            //    if(item.PrimaryAddress != null)
+            //    if (item.PrimaryAddress != null)
             //    {
             //        Console.WriteLine($"{item.PrimaryAddress.Street}/{item.PrimaryAddress.City}/{item.PrimaryAddress.Country}");
             //    }
             //    Console.WriteLine();
             //}
 
+
+            /// Getting all records on different Types of T
+            //var returnedRecord = db.LoadRecords<NameModel>("People");
+            //foreach (var item in returnedRecord)
+            //{
+            //    Console.WriteLine($"{item.FirstName} {item.LastName}");
+            //    Console.WriteLine();
+            //}
+
             /// Getting one record
-            //var oneRecord = db.LoadOneRecord<PersonModel>("Users", new Guid("9bf87b0c-35ed-48f7-98a4-cb5a219a4e31"));
+            //var oneRecord = db.LoadRecordById<PersonModel>("People", new Guid("9bf87b0c-35ed-48f7-98a4-cb5a219a4e31"));
             //Console.WriteLine(oneRecord.ToString());
+
+
+            /// Upsert
+            //var oneRecord = db.LoadRecordById<PersonModel>("People", new Guid("9bf87b0c-35ed-48f7-98a4-cb5a219a4e31"));
+            //oneRecord.DateOfBirth = new DateTime(1985, 05, 09, 0,0,0, DateTimeKind.Utc);
+            //db.UpsertRecord<PersonModel>("Users", oneRecord.Id, oneRecord);
+
+
+            /// Delete One Record
+            //db.DeleteRecord<PersonModel>("People", new Guid("c409334a-61bd-44c9-8fd6-1b1502003918"));
+
+
         }
     }
 }
